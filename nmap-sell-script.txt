@@ -1,0 +1,31 @@
+#!/bin/bash
+if grep "open" <(nmap -p 1-1024 "*.*.*.*")
+then
+	result=$(nmap -p 1-1024 *.*.*.* | grep open)
+   echo "<html><head><title>This is an automated ports scan report</title></head>
+<body>
+        <p style='color:red'>This is an automated mail from the Nmap script. Please don't reply<p>
+        <br>
+        <br>
+  <p> Hi Team <br> <br> We have noticed the below mentioned ports open for the server *.*.*.*. Please look into it immediatley.</p>
+  <br>
+  <br>
+  <p>$result </p>
+<br>
+  <p>Regards</p>
+  <p>Revanth Kumar </p>
+  <p>* </p>
+  <p>* </p>
+  <img src="/etc/scripts.PNG" </img>
+</body>
+</html>
+" | mail -s "$(echo -e "HIGH ALERT\nContent-Type: text/html")" ******@gmail.com
+
+else
+    echo "DOWN"
+fi
+~
+~
+~
+~
+
